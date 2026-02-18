@@ -1,4 +1,5 @@
-#!/bin/bash
+cd D:\oop\csharp-homework-5\task4
+notepad solution.sh#!/bin/bash
 if [ $# -ne 1 ]; then
     echo "Использование: $0 <директория>"
     exit 1
@@ -10,4 +11,4 @@ if [ ! -d "$directory" ]; then
 fi
 find "$directory" -type f -exec chmod 640 {} \;
 find "$directory" -type d -exec chmod 755 {} \;
-echo "Права изменены"ение/запись, группа - чтение, остальные - нет прав"
+echo "Права изменены"

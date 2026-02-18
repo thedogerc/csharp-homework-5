@@ -1,19 +1,14 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]; then
-    echo "Ошибка: Укажите путь к директории"
-    echo "Использование: $0 <путь_к_директории>"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <directory>"
     exit 1
 fi
-
 if [ ! -d "$1" ]; then
-    echo "Ошибка: Директория '$1' не существует"
+    echo "Error: Directory '$1' does not exist"
     exit 1
 fi
 
-find "$1" -type f -exec chmod 600 {} \;
+find "$1" -type f -exec chmod 640 {} \;
 
-echo "Права на файлы в директории '$1' успешно изменены:"
-echo "- Владелец: чтение/запись (6)"
-echo "- Группа: нет прав (0)"
-echo "- Остальные: нет прав (0)"
+echo "Permissions changed to 640 for all files in $1"

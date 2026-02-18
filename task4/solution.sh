@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ $# -ne 1 ]; then
     echo "Использование: $0 <директория>"
     exit 1
@@ -12,6 +11,9 @@ if [ ! -d "$directory" ]; then
     exit 1
 fi
 
+
 find "$directory" -type f -exec chmod 640 {} \;
 
-echo "Права изменены: владелец - чтение/запись, группа - чтение, остальные - нет прав"
+find "$directory" -type d -exec chmod 755 {} \;
+
+echo "Права изменены"делец - чтение/запись, группа - чтение, остальные - нет прав"

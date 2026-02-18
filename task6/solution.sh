@@ -1,7 +1,2 @@
 #!/bin/bash
-if [ -f ".hidden_file" ]; then
-    echo "Found .hidden_file"
-else
-    echo ".hidden_file not found"
-fi
-ps aux --sort=-%mem | grep "^$(whoami)" | head -10
+ps -u $(whoami) -o pid,%mem,%cpu,comm --sort=-%mem

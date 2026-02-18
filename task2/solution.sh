@@ -12,18 +12,18 @@ if [ ! -d "$directory" ]; then
 fi
 
 files_count=$(find "$directory" -type f | wc -l)
+
 dirs_count=$(find "$directory" -type d | wc -l)
 dirs_count=$((dirs_count - 1))
 
-biggest_file=$(find "$directory" -type f -exec ls -l {} \; 2>/dev/null | sort -k5 -rn | head -1)
+biggest_file=$(find "$directory" -type f -exec du -b {} \; 2>/dev/null | sort -nr | head -1)
 if [ -n "$biggest_file" ]; then
-    filename=$(echo "$biggest_file" | awk '{print $9}')
-    size=$(echo "$biggest_file" | awk '{print $5}')
-    echo "Количество файлов: $files_count"
-    echo "Количество директорий: $dirs_count"
-    echo "Самый большой файл: $filename ($size байт)"
+    biggest_name=$(echo "$biggest_file" | awk '{print $2}')
+    echo "Files: $files_count"
+    echo "Dirs: $dirs_count"
+    echo "$biggest_name"
 else
-    echo "Количество файлов: $files_count"
-    echo "Количество директорий: $dirs_count"
-    echo "В директории нет файлов"
+    echo "Files: $files_count"
+    echo "Dirs: $dirs_count"
+    echo "No files"
 fi
